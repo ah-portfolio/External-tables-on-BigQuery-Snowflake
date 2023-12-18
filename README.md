@@ -69,7 +69,7 @@ We are going to mesure performances on four operations without LIMIT operator:
       
 ### Naive behaviour 
 
-Lets consider that we are explorating the dataset naively, without any optimization. 
+Lets consider that we are explorating the dataset naively, without any optimization and without any COPY command. 
 
 | DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
@@ -81,7 +81,7 @@ Lets consider that we are explorating the dataset naively, without any optimizat
 
 Partitionning : 
 
--> BigQuery automate partitionning (by using schema auto detect) at the table creation. Each parquet is called part.*.parquet, the star correspond to the column null_dask_index.
+-> BigQuery automate partitionning (by using schema auto detect) at the table creation. Each parquet is called part.*.parquet, the star correspond to the column null_dask_index.  
 -> Snowflake can automate partitionning by creating a gcp pub/sub, each file added on the gcs bucket will trigger an auto refresh (not used here).
 
 ## Conclusion :
