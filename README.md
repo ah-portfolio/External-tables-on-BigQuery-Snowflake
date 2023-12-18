@@ -1,1 +1,1 @@
-# External-tables-on-BigQuery-Snowflake
+# External tables on BigQuery vs Snowflake
