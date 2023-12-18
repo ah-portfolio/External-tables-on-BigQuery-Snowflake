@@ -80,7 +80,9 @@ Lets consider that we are explorating the dataset naively, without any optimizat
 
 ### More optimized behaviour 
 
-Partitionning & index
+Partitionning : BigQuery automate partitionning (by using schema auto detect) at the table creation. Each parquet is called part.*.parquet, the star correspond to the column null_dask_index.
+
+Let's alter snowflake tables to add the partitionning and see what append.
 
 | DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
@@ -92,6 +94,6 @@ Partitionning & index
 ## Conclusion
 
 1) Snowflake datawarehouse have a huge performance gap between the size.
-2) Big Query is really close to Snowflake XL performance
+2) Big Query is really close to Snowflake XL performance, but Snowflak
 
 If we talk about price, Snowflake is more expensive then BigQuery for that purpose with good datawarehouse (size > M). 
