@@ -25,6 +25,10 @@ This dataset will be uploaded to a Google Cloud Storage bucket in two differnet 
 
 `CREATE EXTERNAL TABLE mygcpaccount.test_perf.customer OPTIONS(format="PARQUET",uris["gs://test_perf_bq_sf/customers/part.*.parquet"]);`
 
+![image](https://github.com/ah-portfolio/External-tables-on-BigQuery-Snowflake/assets/110063004/75527feb-0c0b-41b7-a3fb-4c2b4d26acb7)
+
+PS : in order to test with coherent results each time, we disabled this bigquery feature.
+
 #### Snowflake
 First step : create a storage integration : 
 ```
@@ -50,7 +54,7 @@ type = 'PARQUET';
 ```
 Now we can access data, and create external tables from this stage.
 
-PS : in order to test with coherent results each time, we disabled this snowflake feature : alter session set USE_CACHED_RESULT = FALSE;
+PS : in order to test with coherent results each time, we disabled this snowflake feature : `alter session set USE_CACHED_RESULT = FALSE;`
 
 PS : The GCS bucket, external tables in BigQuery and the snowflake account are all in the same region: europe-west2
 
@@ -71,8 +75,8 @@ Lets consider that we are explorating the dataset naively, without any optimizat
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
 | SELECT WHERE  |        2min02s|            26s|             1s|             1s|
 | COUNT(*)      |        1min01s|            14s|           4,2s|             1s|
-| INNER JOIN    |              s|        2min06s|              s|            24s|
-| AGREGATION    |       2min12 s|              s|              s|              s|
+| INNER JOIN    |              s|        2min06s|            33s|            24s|
+| AGREGATION    |       2min12 s|           32 s|             8s|              s|
 
 ### More optimized behaviour 
 
