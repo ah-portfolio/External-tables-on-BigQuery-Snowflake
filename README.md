@@ -50,6 +50,7 @@ type = 'PARQUET';
 ```
 Now we can access data, and create external tables from this stage.
 
+PS : in order to test with coherent results each time, we disabled this snowflake feature : alter session set USE_CACHED_RESULT = FALSE;
 
 PS : The GCS bucket, external tables in BigQuery and the snowflake account are all in the same region: europe-west2
 
@@ -57,7 +58,7 @@ PS : The GCS bucket, external tables in BigQuery and the snowflake account are a
 
 We are going to mesure performances on four operations without LIMIT operator:
 
-  1. Simple select : on the bigest table which is orders
+  1. Select where : on the bigest table which is orders
   2. Count(*) : on the bigest table which is orders
   3. Inner Join : between orders and customers
   4. Agregation : find the number of orders per month per customer
@@ -66,5 +67,22 @@ We are going to mesure performances on four operations without LIMIT operator:
 
 Lets consider that we are explorating the dataset naively, without any optimization. 
 
+| DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
+|:-------------:|:-------------:|--------------:|--------------:|--------------:|
+| SELECT WHERE  |        2min02s|            26s|             1s|             1s|
+| COUNT(*)      |        1min01s|            14s|           4,2s|             1s|
+| INNER JOIN    |              s|        2min06s|              s|            24s|
+| AGREGATION    |       2min12 s|              s|              s|              s|
+
+### More optimized behaviour 
+
+Partitionning & index
+
+|               | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
+|:-------------:|:-------------:|--------------:|--------------:|--------------:|
+| SELECT        |          45  s|              s|              s|              s|
+| COUNT(*)      |              s|              s|              s|              s|
+| INNER JOIN    |              s|              s|              s|              s|
+| AGREGATION    |              s|              s|              s|              s|
 
 ## Conclusion
