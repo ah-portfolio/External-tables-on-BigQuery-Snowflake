@@ -65,7 +65,7 @@ We are going to mesure performances on four operations without LIMIT operator:
   1. Select where : on the bigest table which is orders
   2. Count(*) : on the bigest table which is orders
   3. Inner Join : between orders and customers
-  4. Agregation : find the number of orders per month per customer
+  4. Agregation : find the number of orders per customer
       
 ### Naive behaviour 
 
@@ -73,27 +73,29 @@ Lets consider that we are explorating the dataset naively, without any optimizat
 
 | DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
-| SELECT WHERE  |        2min02s|            26s|             1s|             1s|
-| COUNT(*)      |        1min01s|            14s|             4s|             1s|
-| INNER JOIN    |        8min22s|        2min06s|            33s|            24s|
-| AGREGATION    |        2min12s|            38s|            12s|            55s|
+| SELECT WHERE  |       2min 02s|            26s|             1s|             1s|
+| COUNT(*)      |       1min 01s|            14s|             4s|             1s|
+| INNER JOIN    |       8min 22s|       2min 06s|            33s|            24s|
+| AGREGATION    |       2min 12s|            38s|            12s|            55s|
 
-### More optimized behaviour 
 
-Partitionning : BigQuery automate partitionning (by using schema auto detect) at the table creation. Each parquet is called part.*.parquet, the star correspond to the column null_dask_index.
+Partitionning : 
 
-Let's alter snowflake tables to add the partitionning and see what append.
+-> BigQuery automate partitionning (by using schema auto detect) at the table creation. Each parquet is called part.*.parquet, the star correspond to the column null_dask_index.
+-> Snowflake can automate partitionning by creating a gcp pub/sub, each file added on the gcs bucket will trigger an auto refresh (not used here).
 
-| DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
-|:-------------:|:-------------:|--------------:|--------------:|--------------:|
-| SELECT        |              s|              s|              s|              s|
-| COUNT(*)      |              s|              s|              s|              s|
-| INNER JOIN    |              s|              s|              s|              s|
-| AGREGATION    |              s|              s|              s|              s|
+## Conclusion :
 
-## Conclusion
+### Performance Gap
+Snowflake data warehouse exhibits a noticeable performance gap that varies with the size of the data. The performance may differ significantly depending on the scale of the operation
 
-1) Snowflake datawarehouse have a huge performance gap between the size.
-2) Big Query is really close to Snowflake XL performance, but Snowflak
+### BigQuery Performance
+BigQuery demonstrates competitive performance, particularly with Snowflake XL. It holds its own in terms of processing capabilities, approaching the performance levels of Snowflake.
 
-If we talk about price, Snowflake is more expensive then BigQuery for that purpose with good datawarehouse (size > M). 
+### Price Considerations
+While both Snowflake and BigQuery offer robust performance, the cost aspect should not be overlooked. Snowflake can be more expensive than BigQuery, and understanding the pricing models is crucial for making informed decisions.
+
+### Complexity 
+Snowflake may introduce added complexity and costs when querying external tables. It's important to carefully evaluate the specific use case and requirements to determine the optimal solution between Snowflake and BigQuery.
+
+In conclusion, the choice between Snowflake and BigQuery depends on a variety of factors, including performance needs, cost considerations, and the complexity of querying external tables. Organizations should conduct a thorough analysis based on their unique requirements to make the most informed decision for their data processing and analytics workflows.
