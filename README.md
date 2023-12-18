@@ -74,19 +74,24 @@ Lets consider that we are explorating the dataset naively, without any optimizat
 | DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
 | SELECT WHERE  |        2min02s|            26s|             1s|             1s|
-| COUNT(*)      |        1min01s|            14s|           4,2s|             1s|
-| INNER JOIN    |              s|        2min06s|            33s|            24s|
-| AGREGATION    |       2min12 s|           32 s|             8s|              s|
+| COUNT(*)      |        1min01s|            14s|             4s|             1s|
+| INNER JOIN    |        8min22s|        2min06s|            33s|            24s|
+| AGREGATION    |        2min12s|            38s|            12s|            55s|
 
 ### More optimized behaviour 
 
 Partitionning & index
 
-|               | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
+| DW            | Sowflake XS   | Snwoflake M   | Snwoflake XL  |Big Query      |
 |:-------------:|:-------------:|--------------:|--------------:|--------------:|
-| SELECT        |          45  s|              s|              s|              s|
+| SELECT        |              s|              s|              s|              s|
 | COUNT(*)      |              s|              s|              s|              s|
 | INNER JOIN    |              s|              s|              s|              s|
 | AGREGATION    |              s|              s|              s|              s|
 
 ## Conclusion
+
+1) Snowflake datawarehouse have a huge performance gap between the size.
+2) Big Query is really close to Snowflake XL performance
+
+If we talk about price, Snowflake is more expensive then BigQuery for that purpose with good datawarehouse (size > M). 
