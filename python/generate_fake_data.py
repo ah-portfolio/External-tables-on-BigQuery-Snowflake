@@ -52,12 +52,6 @@ for i in range(n) :
     customers_output_path = f'customers.parquet'
     orders_output_path = f'orders.parquet'
 
-    # # Clean up if files already exist
-    # if os.path.exists(customers_output_path):
-    #     shutil.rmtree(customers_output_path)
-    # if os.path.exists(orders_output_path):
-    #     shutil.rmtree(orders_output_path)
-
     ddf_customers.to_parquet(customers_output_path, engine='pyarrow',append = True)
     ddf_orders.to_parquet(orders_output_path, engine='pyarrow',append = True)
 
