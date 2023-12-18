@@ -87,15 +87,15 @@ Partitionning :
 ## Conclusion :
 
 ### Performance Gap
-Snowflake data warehouse exhibits a noticeable performance gap that varies with the size of the data. The performance may differ significantly depending on the scale of the operation
+Snowflake data warehouse exhibits a noticeable performance gap that varies with the size of the datawharehouse. The performance may differ significantly depending on the scale of the operation
 
 ### BigQuery Performance
-BigQuery demonstrates competitive performance, particularly with Snowflake XL. It holds its own in terms of processing capabilities, approaching the performance levels of Snowflake.
+BigQuery demonstrates competitive performance, particularly with Snowflake XL. It holds its own in terms of processing capabilities, approaching the performance levels of Snowflake. Snowflake is really powerfull for this use case. As we see between XL datawarehouse and BigQuery performances are very close although BigQuery is a gcp solution
 
 ### Price Considerations
 While both Snowflake and BigQuery offer robust performance, the cost aspect should not be overlooked. Snowflake can be more expensive than BigQuery, and understanding the pricing models is crucial for making informed decisions.
 
 ### Complexity 
-Snowflake may introduce added complexity and costs when querying external tables. It's important to carefully evaluate the specific use case and requirements to determine the optimal solution between Snowflake and BigQuery.
+Snowflake may introduce added complexity when querying external tables. It's important to carefully evaluate the specific use case and requirements to determine the optimal solution between Snowflake and BigQuery.
 
 In conclusion, the choice between Snowflake and BigQuery depends on a variety of factors, including performance needs, cost considerations, and the complexity of querying external tables. Organizations should conduct a thorough analysis based on their unique requirements to make the most informed decision for their data processing and analytics workflows.
